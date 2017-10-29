@@ -1,5 +1,4 @@
-﻿using eCommerceShop.Core.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace eCommerceShop.Core.Interfaces
 {
-    public interface IPurchaseOrderManager
+    public interface IMessageManager
     {
-        bool PlaceOrder(PurchaseOrderModel purchaseOrderModel);
+        void DoProcess();
+        bool IsProcessRunning();
     }
 }

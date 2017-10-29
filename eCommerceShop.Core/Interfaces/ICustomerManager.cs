@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace eCommerceShop.Core.Interfaces
 {
-    public interface IPurchaseOrderManager
+    public interface ICustomerManager
     {
-        bool PlaceOrder(PurchaseOrderModel purchaseOrderModel);
+        void AddCustomer(CustomerModel customerModel);
     }
 }

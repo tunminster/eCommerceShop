@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using eCommerceShop.Web.Models;
+using eCommerceShop.Data.Models;
+using eCommerceShop.Data;
 
 namespace eCommerceShop.Web.Controllers
 {
@@ -17,15 +19,17 @@ namespace eCommerceShop.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IEcommerceShopContext _ecommerceShopContext;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, EcommerceShopContext ecommerceShopContext )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _ecommerceShopContext = ecommerceShopContext;
         }
 
         public ApplicationSignInManager SignInManager
@@ -153,6 +157,10 @@ namespace eCommerceShop.Web.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                var customer = new Customer { Email = model.Email, Name = model.Email, IsBookClubMembership = false, IsVideoClubMembership = false };
+                _ecommerceShopContext.Add(customer);
+                await _ecommerceShopContext.CommitSync();
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -162,6 +170,7 @@ namespace eCommerceShop.Web.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
 
                     return RedirectToAction("Index", "Home");
                 }

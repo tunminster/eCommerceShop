@@ -19,6 +19,8 @@ namespace eCommerceShop.Data
         public IDbSet<Customer> Customers { get; set; }
         public IDbSet<Product> Products { get; set; }
         public IDbSet<ProductType> ProductTypes { get; set; }
+        public IDbSet<Order> Orders { get; set; }
+        public IDbSet<OrderItem> OrderItems { get; set; }
 
 
         public void Add<T>(params T[] entities) where T : class

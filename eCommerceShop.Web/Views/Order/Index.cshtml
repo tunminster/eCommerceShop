@@ -1,0 +1,62 @@
+﻿@model eCommerceShop.Web.Models.OrderViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @using(Html.BeginForm("index", "order", FormMethod.Post))
+                    {
+                        <td><label>Video: Comprehensive First Aid Traing</label>
+                        <input type="hidden" id="videoProduct" name="VideoProduct" value="1" />
+                        <input type="hidden" id="videoProductName" name="VideoProductName" value="Comprehensive First Aid Traing" />
+                    
+                    <br />
+                            <label>Book: The Girl on the train</label><input type="hidden" id="bookProduct" name="BookProduct" value="2" /> 
+                            <input type="hidden" id="bookProductName" name="BookProductName" value="The Girl on the train" />
+                    <br />
+                            <label>Book: Club Member</label><input type="hidden" id="membershipProduct" name="MembershipProduct" value="3" />
+                            <input type="hidden" id="membershipProductName" name="MembershipProductName" value="Book Club Member" />
+                        </td>
+                        <td> <label>Total: £ 48.50</label> <input type="hidden" value="48.50" name="Total" id="total" /></td>
+                        <td><input type="submit" class="btn btn-success" value="Order"/> | <input type="button" class="btn btn-default" value="Cancel" /></td>
+                    }
+                </tr>
+                <tr>
+                    @using (Html.BeginForm("index", "order", FormMethod.Post))
+                    {
+                    <td>
+                        <label>Video: Comprehensive First Aid Traing</label><input type="hidden" id="videoProduct" name="VideoProduct" value="1" /> 
+                        <input type="hidden" id="videoProductName" name="VideoProductName" value="Comprehensive First Aid Traing" />
+                        <br />
+                        <label>Book: The Girl on the train</label><input type="hidden" id="bookProduct" name="BookProduct" value="2" /> 
+                        <input type="hidden" id="bookProductName" name="BookProductName" value="The Girl on the train" />
+                        <br />
+                        <label>Video: Club Member</label><input type="hidden" id="membershipProduct" name="MembershipProduct" value="4" />
+                        <input type="hidden" id="membershipProductName" name="MembershipProductName" value="Video Club Member" />
+                    </td>
+                    <td> <label>Total: £ 50.50</label> <input type="hidden" value="50.50" name="Total" id="total" /></td>
+                    <td><input type="submit" class="btn btn-success" value="Order" /> | <input type="button" class="btn btn-default" value="Cancel" /></td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
+
